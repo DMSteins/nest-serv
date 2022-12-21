@@ -37,6 +37,8 @@ const libModules = [
 				username,
 				password,
 				database,
+				synchronise: true,
+				logging: true,
 				// entities
 				entities: ['dist/**/*.entity{.ts,.js}'],
 			};
