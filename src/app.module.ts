@@ -10,9 +10,9 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 
 const businessModules = [
+	UserModule,
 	AuthModule,
 	PluginModule,
-	UserModule,
 ];
 
 const libModules = [
@@ -45,7 +45,7 @@ const libModules = [
 ];
 
 @Module({
-	imports: [...libModules, ...businessModules, AuthModule],
+	imports: [...libModules, ...businessModules],
 	controllers: [AppController],
 	providers: [AppService],
 })
