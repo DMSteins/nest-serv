@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import BaseEntity from "@/common/entities/base.entity";
+import BaseEntity from "../../../common/entities/base.entity";
+
+@Entity()
 export class Plugin extends BaseEntity {
 	@Column()
 	name: string;

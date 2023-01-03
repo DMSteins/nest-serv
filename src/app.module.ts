@@ -40,7 +40,8 @@ const libModules = [
 				synchronise: true,
 				logging: true,
 				// entities
-				entities: ['dist/**/*.entity{.ts,.js}'],
+				entities: ['modules/**/*.entity{.ts,.js}'],
+				autoLoadEntities: true
 			};
 		},
 	}),

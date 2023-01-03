@@ -12,23 +12,23 @@ const PORT = process.env.PORT || 9090;
 const PREFIX = process.env.API_PREFIX || 'api';
 
 async function bootstrap() {
-  const reportLogger = new ReportLogger();
-  console.log(process.env.NODE_ENV, process.env.PREFIX)
-  const app = await NestFactory.create(AppModule, {
-    logger: IS_DEV ? reportLogger : ['error', 'warn'],
-  });
-  app.setGlobalPrefix(PREFIX);
-  app.useGlobalFilters(new HttpExceptionFilter(), new AllExceptionFilter());
-  app.useGlobalPipes(new ValidationPipe({
-    // fix parameter escape    
-    whitelist: true,
-  }));
-  app.useGlobalInterceptors(
-    new LogInterceptor(reportLogger),
-    new TransformInterceptor(),
-  );
-  await app.listen(PORT, () => {
-    Logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
-  });
+	const reportLogger = new ReportLogger();
+
+	const app = await NestFactory.create(AppModule, {
+		logger: IS_DEV ? reportLogger : ['error', 'warn'],
+	});
+	app.setGlobalPrefix(PREFIX);
+	app.useGlobalFilters(new HttpExceptionFilter(), new AllExceptionFilter());
+	app.useGlobalPipes(new ValidationPipe({
+		// fix parameter escape    
+		whitelist: true,
+	}));
+	app.useGlobalInterceptors(
+		new LogInterceptor(reportLogger),
+		new TransformInterceptor(),
+	);
+	await app.listen(PORT, () => {
+		Logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
+	});
 }
 bootstrap();
