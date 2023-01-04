@@ -8,6 +8,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { PluginModule } from './modules/plugin/plugin.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { VersionModule } from './modules/version/version.module';
 
 const businessModules = [
 	UserModule,
@@ -48,7 +49,7 @@ const libModules = [
 ];
 
 @Module({
-	imports: [...libModules, ...businessModules],
+	imports: [...libModules, ...businessModules, VersionModule],
 	controllers: [AppController],
 	providers: [AppService],
 })
