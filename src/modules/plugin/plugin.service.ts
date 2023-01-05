@@ -1,26 +1,44 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePluginDto } from './dto/create-plugin.dto';
 import { UpdatePluginDto } from './dto/update-plugin.dto';
+import { Plugin } from './entities/plugin.entity'
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PluginService {
-  create(createPluginDto: CreatePluginDto) {
-    return 'This action adds a new plugin';
-  }
+	constructor(
+		@InjectRepository(Plugin)
+		private repository: Repository<Plugin>,
+	) {
 
-  findAll() {
-    return `This action returns all plugin`;
-  }
+	}
+	create(createPluginDto: CreatePluginDto) {
+		const { } = createPluginDto;
 
-  findOne(id: number) {
-    return `This action returns a #${id} plugin`;
-  }
+		const user = new Plugin();
 
-  update(id: number, updatePluginDto: UpdatePluginDto) {
-    return `This action updates a #${id} plugin`;
-  }
 
-  remove(id: number) {
-    return `This action removes a #${id} plugin`;
-  }
+		return this.repository.save(user);
+	}
+
+	findAll() {
+		return this.repository.find();
+	}
+
+	findOne(id: number) {
+		return this.repository.findOneBy({ id });
+	}
+
+	update(id: number, updateUserDto: UpdatePluginDto) {
+		const { } = updateUserDto;
+
+		return this.repository.update({ id }, {});
+	}
+
+	remove(id: number) {
+		return this.repository.delete({
+			id,
+		});
+	}
 }

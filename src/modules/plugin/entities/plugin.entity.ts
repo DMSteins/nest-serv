@@ -13,7 +13,6 @@ export class Plugin extends BaseEntity {
 	@Column()
 	author: string;
 
-
 	@OneToOne(() => Version)
 	@JoinColumn()
 	version: Version;
